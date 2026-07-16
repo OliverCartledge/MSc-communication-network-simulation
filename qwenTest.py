@@ -1,3 +1,5 @@
+#test code from https://huggingface.co/Qwen/Qwen-Image
+
 from diffusers import DiffusionPipeline
 import torch
 
@@ -40,9 +42,9 @@ width, height = aspect_ratios["16:9"]
 image = pipe(
     prompt=prompt + positive_magic["en"],
     negative_prompt=negative_prompt,
-    width=width,
-    height=height,
-    num_inference_steps=50,
+    width=256, # <- reduced for testing
+    height=256, # <- reduced for testing
+    num_inference_steps=20, # <- reduced for testing
     true_cfg_scale=4.0,
     generator=torch.Generator(device="cuda").manual_seed(42)
 ).images[0]
