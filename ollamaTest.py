@@ -1,9 +1,17 @@
+# ollama vision model notes: https://ollama.com/library/llama3.2-vision
+
 from ollama import chat
 
 response = chat(
-    model='llama3.1',
-    messages=[{'role': 'user', 'content': 'Rewrite this setnence using a small amount of semantic shift in a negative direction. "A lackluster rally fizzled out on the universitys quad."!'}],
-    stream= True
+    model="llava",
+    messages=[
+        {
+            "role": "user",
+            "content": "Describe this image in a sentence.",
+            "images": ["./exampleOctQwen.png"],
+        }
+    ],
+    stream=True,
 )
 
 for chunk in response:

@@ -1,52 +1,42 @@
-#test code from https://huggingface.co/Qwen/Qwen-Image
-
 from diffusers import DiffusionPipeline
 import torch
 
 model_name = "Qwen/Qwen-Image"
 
-# Load the pipeline
-if torch.cuda.is_available():
-    torch_dtype = torch.bfloat16
-    device = "cuda"
-else:
-    torch_dtype = torch.float32
-    device = "cpu"
+# Load model in BF16 if CUDA is available
+torch_dtype = torch.bfloat16 if torch.cuda.is_available() else torch.float32
 
-pipe = DiffusionPipeline.from_pretrained(model_name, torch_dtype=torch_dtype)
-pipe = pipe.to(device)
+pipe = DiffusionPipeline.from_pretrained(
+    model_name,
+    torch_dtype=torch_dtype,
+)
+
+# IMPORTANT:
+# Do NOT call pipe.to("cuda")
+if torch.cuda.is_available():
+    pipe.enable_sequential_cpu_offload()
+else:
+    pipe.to("cpu")
+
+# Optional memory saving
+pipe.vae.enable_tiling()
 
 positive_magic = {
-    "en": ", Ultra HD, 4K, cinematic composition.", # for english prompt
+    "en": ", HD",
 }
 
-# Generate image
-prompt = ''' A roman soldier with a sword'''
+prompt = "flash flood emergency issued in southern texas around camp mystic area"
 
-negative_prompt = " " # using an empty string if you do not have specific concept to remove
-
-
-# Generate with different aspect ratios
-aspect_ratios = {
-    "1:1": (1328, 1328),
-    "16:9": (1664, 928),
-    "9:16": (928, 1664),
-    "4:3": (1472, 1140),
-    "3:4": (1140, 1472),
-    "3:2": (1584, 1056),
-    "2:3": (1056, 1584),
-}
-
-width, height = aspect_ratios["16:9"]
+negative_prompt = ""
 
 image = pipe(
     prompt=prompt + positive_magic["en"],
     negative_prompt=negative_prompt,
-    width=256, # <- reduced for testing
-    height=256, # <- reduced for testing
-    num_inference_steps=20, # <- reduced for testing
+    width=256,
+    height=256,
+    num_inference_steps=20,
     true_cfg_scale=4.0,
-    generator=torch.Generator(device="cuda").manual_seed(42)
+    generator=torch.Generator(device="cuda").manual_seed(42),
 ).images[0]
 
-image.save("example.png")
+image.save("exampleGDELT.png")
