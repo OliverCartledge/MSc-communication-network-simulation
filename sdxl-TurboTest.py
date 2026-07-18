@@ -35,12 +35,12 @@ generator = torch.Generator(device = device).manual_seed(42)
 image = pipe(
     prompt = prompt,
     guidance_scale=0.0,
-    num_interference_steps=2,
+    num_interference_steps=1,
     generator=generator,
     width=512,
     height = 512
 ).images[0]
 
-image.save("thirdRun.png")
+image.save("thirdRun1Step.png")
 
 print("Prompted image was saved")
