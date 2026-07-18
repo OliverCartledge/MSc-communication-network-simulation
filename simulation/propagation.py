@@ -1,7 +1,7 @@
 from collections import deque
+from ollamaTest import alterMessage
 
 #breadth first search
-
 class Propagation:
     def __init__(self, network):
         self.network = network
@@ -26,13 +26,16 @@ class Propagation:
 
             print(f"\nAgent {current} communicating...")
 
+            print(f"\nMy message is: {current_agent.message}")
+
             for neighbour in self.network.graph.neighbors(current):
                 neighbour_agent = self.network.agents[neighbour]
 
                 if not neighbour_agent.has_received:
                     neighbour_agent.receive_message(
-                        current_agent.message
+                        alterMessage(current_agent.message)
                     )
+                    print(f"Neighbours altered message: {neighbour_agent.message}")
                     print(
                         f"Agent {current} -> Agent {neighbour}"
                     )
