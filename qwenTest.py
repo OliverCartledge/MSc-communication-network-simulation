@@ -11,8 +11,6 @@ pipe = DiffusionPipeline.from_pretrained(
     torch_dtype=torch_dtype,
 )
 
-# IMPORTANT:
-# Do NOT call pipe.to("cuda")
 if torch.cuda.is_available():
     pipe.enable_sequential_cpu_offload()
 else:
