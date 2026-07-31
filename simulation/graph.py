@@ -7,7 +7,7 @@ class CommunicationGraph:
 
     def __init__(
             self, 
-            num_agents = 100, 
+            num_agents = 50, 
             nearest_neighbours = 4, 
             rewiring_probability = 0.2
         ):
@@ -29,8 +29,10 @@ class CommunicationGraph:
         for node in self.graph.nodes:
             self.agents[node] = Agent(node)
 
-    def assign_initial_message(self, agent_id, message):
+    def assign_initial_message(self, agent_id, message, role):
         self.agents[agent_id].receive_message(message)
+        self.agents[agent_id].assign_role(role)
+        
 
     def display(self):
 

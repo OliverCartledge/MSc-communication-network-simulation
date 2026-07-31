@@ -24,7 +24,7 @@ class Propagation:
 
             current_agent = self.network.agents[current]
 
-            print(f"\nAgent {current} communicating...")
+            print(f"\nAgent {current} {current_agent.role} communicating...")
 
             print(f"\nMy message is: {current_agent.message}")
 
@@ -33,7 +33,7 @@ class Propagation:
 
                 if not neighbour_agent.has_received:
                     neighbour_agent.receive_message(
-                        alterMessage(current_agent.message)
+                        alterMessage(current_agent.message, current_agent.role)
                     )
                     print(f"Neighbours altered message: {neighbour_agent.message}")
                     print(

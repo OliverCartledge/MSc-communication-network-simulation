@@ -1,7 +1,20 @@
+import random
+
+ACTOR_TYPES = [
+    "neutral",
+    "positive",
+    "negative"
+]
+
+
 class Agent:
     def __init__(self, agent_id):
         self.id = agent_id
         self.message = None
+
+        #if the roles are randomized
+        #self.role = "neutral"
+        self.role = random.choice(ACTOR_TYPES)
         
         #checks to make sure info isnt repassed to the same node
         self.has_received = False
@@ -11,6 +24,9 @@ class Agent:
 
         #checks to make sure info isnt repassed to the same node
         self.has_received = True
+
+    def assign_role(self, role):
+        self.role = role
 
     def __repr__(self):
         return f"Agent({self.id})"

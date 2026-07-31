@@ -5,7 +5,7 @@ from simulation.propagation import Propagation
 def main():
 
     network = CommunicationGraph(
-        num_agents=50,
+        num_agents=12,
         nearest_neighbours=4,
         rewiring_probability=0.2
     )
@@ -14,7 +14,8 @@ def main():
 
     network.assign_initial_message(
         0,
-        "The protest remained peaceful."
+        "The protest remained peaceful",
+        "neutral"
     )
 
     simulation = Propagation(network)
