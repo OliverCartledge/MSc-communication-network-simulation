@@ -1,11 +1,12 @@
 from simulation.graph import CommunicationGraph
 from simulation.propagation import Propagation
+from simulation.VLMpropagation import VLMPropagation
 
 
 def main():
 
     network = CommunicationGraph(
-        num_agents=12,
+        num_agents=8,
         nearest_neighbours=4,
         rewiring_probability=0.2
     )
@@ -18,7 +19,7 @@ def main():
         "neutral"
     )
 
-    simulation = Propagation(network)
+    simulation = VLMPropagation(network)
 
     # simulation.propagate()
 

@@ -61,44 +61,8 @@ class CommunicationGraph:
 
         plt.pause(0.75)
 
-
-        # plt.figure(figsize=(8,8))
-
-        # colours = []
-
-        # for node in self.graph.nodes:
-
-        #     agent = self.agents[node]
-
-        #     if agent.has_received:
-        #         colours.append("red")
-            
-        #     else: 
-        #         colours.append("lightblue")
-
-
-        # nx.draw_networkx(
-        #     self.graph,
-        #     node_color=colours,
-        #     with_labels=True,
-        #     node_size=400,
-        #     font_size=8
-        # )
-
-        # plt.title("Communication network")
-
-        # plt.show()
-
     def summary(self):
           
           print(f"Agents: {self.graph.number_of_nodes()}")
 
           print(f"Conections: {self.graph.number_of_edges()}")
-
-          #print(f"Average Degree: " f"{sum(dict(self.graph.degree()).values())/self.graph.number_of_nodes():.2f}")
-
-          print(f"Density: {nx.density(self.graph):.3f}")
-
-          print(f"Average Clustering: {nx.average_clustering(self.graph):.3f}")
-
-          #print(f"Average Shortest Path: {nx.average_shortest_path_length(self.graph):.2f}")

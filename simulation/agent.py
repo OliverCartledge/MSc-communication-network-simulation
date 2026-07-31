@@ -13,8 +13,8 @@ class Agent:
         self.message = None
 
         #if the roles are randomized
-        #self.role = "neutral"
-        self.role = random.choice(ACTOR_TYPES)
+        self.role = "negative"
+        #self.role = random.choice(ACTOR_TYPES)
         
         #checks to make sure info isnt repassed to the same node
         self.has_received = False
@@ -23,6 +23,11 @@ class Agent:
         self.message = message
 
         #checks to make sure info isnt repassed to the same node
+        self.has_received = True
+
+    def recieve_image(self, imageDescription):
+        self.message = imageDescription
+        
         self.has_received = True
 
     def assign_role(self, role):

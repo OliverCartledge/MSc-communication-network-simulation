@@ -1,11 +1,10 @@
 from collections import deque
-from ollamaTest import alterMessage
 
 from imageGeneration import createImageTest
 from photoAnalysis import describeImage
 
 #breadth first search
-class Propagation:
+class VLMPropagation:
     def __init__(self, network):
         self.network = network
 
@@ -32,17 +31,17 @@ class Propagation:
             print(f"\nMy message is: {current_agent.message}")
 
             #testing image generation with the working current version 
-            createImageTest(current, current_agent.message)
-            describeImage(current, current_agent.role)
+            #createImageTest(current, current_agent.message)
 
             for neighbour in self.network.graph.neighbors(current):
                 neighbour_agent = self.network.agents[neighbour]
 
                 if not neighbour_agent.has_received:
-                    neighbour_agent.receive_message(
-                        alterMessage(current_agent.message, current_agent.role)
+                    neighbour_agent.recieve_image(
+                        describeImage(current, current_agent.role)
                     )
-                    print(f"Neighbours altered message: {neighbour_agent.message}")
+                    print(f"Neighbours altered message image saved from this description: \n{neighbour_agent.message}")
+                    createImageTest(neighbour, neighbour_agent.message)
                     print(
                         f"Agent {current} -> Agent {neighbour}"
                     )
