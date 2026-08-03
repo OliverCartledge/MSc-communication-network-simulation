@@ -1,5 +1,8 @@
 from ollama import chat
 
+from ollama import Client
+client = Client(host='http://ollama:11434')
+
 PROMOPTS = {
     "neutral" : """
     Describe the scene in as much detail as possible.
@@ -44,8 +47,10 @@ def describeImage(actor, role):
 
     systemPrompt = PROMOPTS[role]
 
-    response = chat(
-        model="qwen2.5vl",
+    #response = chat(
+    #    model="qwen2.5vl",
+    response = client.chat(
+        model = "llama3.2-vision:11b",
         messages=[
             {
                 "role": "user",
@@ -53,16 +58,14 @@ def describeImage(actor, role):
                 "images": [f"./generateTesting{actor}.png"],
             }
         ],
-        stream=True,
+        stream=False,
     )
 
-    fullResponse = ""
+    
+    print("\n\nTesting image analysis:\n")
 
-    print("\n\nTesting image anaylsis:\n")
-
-    for chunk in response:
-        #print(chunk.message.content, end="", flush=True)
-        fullResponse += chunk.message.content
+    fullResponse = response.message.content
+    print(fullResponse)
 
     return fullResponse
         

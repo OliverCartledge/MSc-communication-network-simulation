@@ -1,7 +1,9 @@
 from diffusers import AutoPipelineForText2Image
 import torch
 
-model_name = "stabilityai/sdxl-turbo"
+model_name = "RunDiffusion/Juggernaut-XL-v9"
+
+#"stabilityai/sdxl-turbo"
 
 if torch.cuda.is_available():
     device = "cuda"

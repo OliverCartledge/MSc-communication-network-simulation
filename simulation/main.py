@@ -21,7 +21,7 @@ Dozens of shootings across US mark bloody July 4th weekend
         "neutral"
     )
 
-    simulation = Propagation(network)
+    simulation = VLMPropagation(network)
 
     # simulation.propagate()
 

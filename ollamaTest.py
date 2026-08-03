@@ -1,6 +1,9 @@
 # ollama vision model notes: https://ollama.com/library/llama3.2-vision
 
 import ollama
+from ollama import Client
+
+client = Client(host='http://ollama:11434')
 
 PROMOPTS = {
     # "neutral" : """
@@ -86,7 +89,8 @@ def alterMessage(originalMessage, role):
     message = originalMessage
     systemPrompt = PROMOPTS[role]
 
-    response = ollama.chat(
+    #response = ollama.chat(
+    response = client.chat(
     model = "llama3.1",
     messages = [
             {

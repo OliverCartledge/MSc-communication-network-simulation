@@ -1,9 +1,14 @@
 from ollama import chat
 
+from ollama import Client
+client = Client(host='http://ollama:11434')
+
 print("running...")
 
-response = chat(
-    model="qwen2.5vl", #instead change to qwen when done. qwen2.5vl
+#response = chat(
+#    model="qwen2.5vl", #instead change to qwen when done. qwen2.5vl
+response = client.chat(
+    model = "llama3.2-vision:11b",
     messages=[
         {
             "role": "user",
