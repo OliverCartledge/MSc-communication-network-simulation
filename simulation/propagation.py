@@ -32,8 +32,8 @@ class Propagation:
             print(f"\nMy message is: {current_agent.message}")
 
             #testing image generation with the working current version 
-            createImageTest(current, current_agent.message)
-            describeImage(current, current_agent.role)
+            #createImageTest(current, current_agent.message)
+            #describeImage(current, current_agent.role)
 
             for neighbour in self.network.graph.neighbors(current):
                 neighbour_agent = self.network.agents[neighbour]

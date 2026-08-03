@@ -64,7 +64,7 @@ PROMOPTS = {
 
     Rules: 
     - Preserve all factual information.
-    - Use slightly more optomistic wording.
+    - Use more optomistic wording.
     - Do not invent facts.
     - Return only the rewritten description
 
@@ -76,7 +76,7 @@ PROMOPTS = {
 
     Rules: 
     - Preserve all factual information.
-    - Use slightly more negative wording.
+    - Use more negative wording.
     - Do not invent facts.
     - Return only the rewritten description. 
     """

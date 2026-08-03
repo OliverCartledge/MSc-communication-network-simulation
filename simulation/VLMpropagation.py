@@ -33,6 +33,10 @@ class VLMPropagation:
             #testing image generation with the working current version 
             #createImageTest(current, current_agent.message)
 
+            if current == 0:
+                print(f"Start agent is {current}")
+                createImageTest(current, current_agent.message)
+
             for neighbour in self.network.graph.neighbors(current):
                 neighbour_agent = self.network.agents[neighbour]
 
