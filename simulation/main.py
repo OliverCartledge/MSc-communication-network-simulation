@@ -6,8 +6,8 @@ from simulation.VLMpropagation import VLMPropagation
 def main():
 
     network = CommunicationGraph(
-        num_agents=12,
-        nearest_neighbours=2,
+        num_agents=16,
+        nearest_neighbours=4,
         rewiring_probability=0.2
     )
 
