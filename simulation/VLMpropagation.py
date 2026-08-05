@@ -48,7 +48,7 @@ class VLMPropagation:
                 neighbour_agent = self.network.agents[neighbour]
 
                 if not neighbour_agent.has_received:
-                    neighbour_agent.recieve_image(
+                    neighbour_agent.receive_image(
                         describeImage(current, current_agent.role)
                     )
 
@@ -122,13 +122,5 @@ class VLMPropagation:
                     # Clear, labeled block for each recipient's received/altered message
                     print(f"\n--- To Agent {neighbour} ({neighbour_agent.role}) ---")
                     print(f"Received message:\n{neighbour_agent.message}")
-
-                    queue.append(neighbour)
-
-                    print(
-                        f"Agent {current} "
-                        f"-> "
-                        f"Agent {neighbour}"
-                    )
 
                     queue.append(neighbour)
