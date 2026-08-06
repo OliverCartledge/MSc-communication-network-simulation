@@ -25,7 +25,7 @@ class Agent:
         #checks to make sure info isnt repassed to the same node
         self.has_received = True
 
-    def recieve_image(self, imageDescription):
+    def receive_image(self, imageDescription):
         self.message = imageDescription
         
         self.has_received = True
