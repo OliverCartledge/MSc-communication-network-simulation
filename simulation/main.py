@@ -6,7 +6,7 @@ from simulation.VLMpropagation import VLMPropagation
 def main():
 
     network = CommunicationGraph(
-        num_agents=16,
+        num_agents=100,
         nearest_neighbours=4,
         rewiring_probability=0.2
     )
@@ -15,17 +15,16 @@ def main():
 
     network.assign_initial_message(
         0,
+        #Abbott Baby Formula Plant Halts Production Again : Story
+        #Abbott baby formula plant floods in Michigan, halting production for 'weeks' : Right
+        #Formula production at Abbott's Michigan plant delayed after flooding from severe storms : Left
         """
-        Abbott Baby Formula Plant Halts Production Again
+        Abbott Nutrition again pauses baby formula production in Sturgis
         """,
         "neutral"
     )
 
     simulation = Propagation(network)
-
-    # simulation.propagate()
-
-    # network.display()
 
     simulation.run()
 
