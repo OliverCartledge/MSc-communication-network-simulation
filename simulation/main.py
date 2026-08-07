@@ -16,7 +16,7 @@ def main():
     network.assign_initial_message(
         0,
         """
-Dozens of shootings across US mark bloody July 4th weekend
+        Abbott Baby Formula Plant Halts Production Again
         """,
         "neutral"
     )

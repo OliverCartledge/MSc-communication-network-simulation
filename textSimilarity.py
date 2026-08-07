@@ -25,10 +25,3 @@ def sentiment_analysis(text):
         "label": result["label"],
         "confidence": float(result["score"])
     }
-
-text1 = "I love programming."
-text2 = "I hate coding."
-
-print("Similarity:", semantic_similarity(text1, text2))
-print("Sentiment 1:", sentiment_analysis(text1))
-print("Sentiment 2:", sentiment_analysis(text2))

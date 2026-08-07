@@ -11,7 +11,9 @@ CSV_COLUMNS = [
     "Role",
     "Message",
     "Similarity To Previous",
-    "Global Similarity To Original"
+    "Global Similarity To Original",
+    "Sentiment Analysis",
+    "Propagation Depth"
 ]
 
 _current_simulation_number = None
@@ -50,7 +52,7 @@ def createCSV(file_path=CSV_PATH, counter_path=COUNTER_PATH):
     return _current_simulation_number
 
 
-def addToCSV(current_agent_id, transferred_from_agent_id, role, message, similarity_to_previous, global_similarity_to_original, file_path=CSV_PATH):
+def addToCSV(current_agent_id, transferred_from_agent_id, role, message, similarity_to_previous, global_similarity_to_original, sentiment_analysis, depth, file_path=CSV_PATH):
     global _current_simulation_number
 
     file_path = Path(file_path)
@@ -68,7 +70,9 @@ def addToCSV(current_agent_id, transferred_from_agent_id, role, message, similar
         "Role": role,
         "Message": message,
         "Similarity To Previous": similarity_to_previous,
-        "Global Similarity To Original": global_similarity_to_original
+        "Global Similarity To Original": global_similarity_to_original,
+        "Sentiment Analysis": sentiment_analysis,
+        "Depth": depth
     }])
 
     csv_loader.to_csv(file_path, mode='a', header=False, index=False)

@@ -1,7 +1,7 @@
 from collections import deque
 from ollamaTest import alterMessage
 
-from textSimilarity import semantic_similarity
+from textSimilarity import semantic_similarity, sentiment_analysis
 from csvEditor import addToCSV, createCSV
 
 
@@ -17,6 +17,8 @@ class Propagation:
         self.final_message = None
 
         self.finished = False
+
+        self.depth = {0: 0}
 
 
     def step(self):
@@ -67,6 +69,10 @@ class Propagation:
                     print(f"Altered response:\n{neighbour_agent.message}")
 
                     print(f"Semantic similarity score between recieved and altered message: {semantic_similarity(current_agent.message, neighbour_agent.message)}")
+                    print(f"Sentiment anaylsis of altered message: {sentiment_analysis(neighbour_agent.message)}")
+
+                    self.depth[neighbour] = self.depth[current] + 1
+                    print (f"Propagation depth: {self.depth[neighbour]}")
 
                     addToCSV(
                         neighbour,
@@ -74,10 +80,13 @@ class Propagation:
                         neighbour_agent.role,
                         neighbour_agent.message,
                         semantic_similarity(current_agent.message, neighbour_agent.message),
-                        semantic_similarity(self.original_message, neighbour_agent.message)
+                        semantic_similarity(self.original_message, neighbour_agent.message),
+                        sentiment_analysis(neighbour_agent.message),
+                        self.depth[neighbour]
                     )
 
                     self.final_message = neighbour_agent.message
+
                     
                     next_frontier.append(neighbour)
 
