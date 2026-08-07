@@ -11,10 +11,11 @@ class Agent:
     def __init__(self, agent_id):
         self.id = agent_id
         self.message = None
+        self.similarity = 1.0
 
         #if the roles are randomized
-        self.role = "negative"
-        #self.role = random.choice(ACTOR_TYPES)
+        #self.role = "negative"
+        self.role = random.choice(ACTOR_TYPES)
         
         #checks to make sure info isnt repassed to the same node
         self.has_received = False

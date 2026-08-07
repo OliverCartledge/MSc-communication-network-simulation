@@ -1,7 +1,13 @@
 from sentence_transformers import SentenceTransformer
 from sentence_transformers.util import cos_sim
 
+from transformers import pipeline
+
+#SBERT model for semantic similarity
 model = SentenceTransformer('all-mpnet-base-v2')
+
+#Sentiment analysis model | https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest
+sentiment_model = pipeline("sentiment-analysis", model = "cardiffnlp/twitter-roberta-base-sentiment-latest")
 
 def semantic_similarity(text1, text2):
 
@@ -12,4 +18,17 @@ def semantic_similarity(text1, text2):
     
     return float(score)
 
-print(semantic_similarity("I love programming.", "I enjoy coding."))
+def sentiment_analysis(text):
+    result = sentiment_model(text)[0]
+
+    return {
+        "label": result["label"],
+        "confidence": float(result["score"])
+    }
+
+text1 = "I love programming."
+text2 = "I hate coding."
+
+print("Similarity:", semantic_similarity(text1, text2))
+print("Sentiment 1:", sentiment_analysis(text1))
+print("Sentiment 2:", sentiment_analysis(text2))

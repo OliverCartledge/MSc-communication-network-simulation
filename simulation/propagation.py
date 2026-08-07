@@ -1,8 +1,9 @@
 from collections import deque
 from ollamaTest import alterMessage
 
-from imageGeneration import createImageTest
-from photoAnalysis import describeImage
+from textSimilarity import semantic_similarity
+from csvEditor import addToCSV, createCSV
+
 
 #breadth first search
 class Propagation:
@@ -11,7 +12,12 @@ class Propagation:
 
         self.frontier = deque([0])
 
+        self.original_message =network.agents[0].message
+
+        self.final_message = None
+
         self.finished = False
+
 
     def step(self):
 
@@ -54,8 +60,25 @@ class Propagation:
 
                     # Clear, labeled block for each recipient's altered response
                     print(f"\n--- To Agent {neighbour} ({neighbour_agent.role}) ---")
+
+                    # show the senders Original message to ensure its working 
+                    print(f"Original Message:{self.original_message}")
+                    print(f"Recieved Message:\n{current_agent.message}")
                     print(f"Altered response:\n{neighbour_agent.message}")
 
+                    print(f"Semantic similarity score between recieved and altered message: {semantic_similarity(current_agent.message, neighbour_agent.message)}")
+
+                    addToCSV(
+                        neighbour,
+                        current,
+                        neighbour_agent.role,
+                        neighbour_agent.message,
+                        semantic_similarity(current_agent.message, neighbour_agent.message),
+                        semantic_similarity(self.original_message, neighbour_agent.message)
+                    )
+
+                    self.final_message = neighbour_agent.message
+                    
                     next_frontier.append(neighbour)
 
         self.frontier = next_frontier
@@ -65,6 +88,8 @@ class Propagation:
 
     def run(self):
         import matplotlib.pyplot as plt
+
+        createCSV()
 
         plt.figure(figsize=(8,8))
 
@@ -81,11 +106,17 @@ class Propagation:
 
         print("\nPropagation complete")
 
+        print(f"Original message: {self.original_message}")
+        print(f"Final message: {self.final_message}")
+        print(f"Semantic similarity score between recieved and altered message: {semantic_similarity(self.original_message, self.final_message)}")
+
         plt.show()
 
 
     #done in an instant. may be good for debugging later? 
     def propagate(self):
+        createCSV()
+
         queue = deque()
 
         queue.append(0)
