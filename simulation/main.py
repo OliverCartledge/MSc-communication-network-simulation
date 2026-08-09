@@ -1,33 +1,36 @@
 from simulation.graph import CommunicationGraph
 from simulation.propagation import Propagation
-from simulation.VLMpropagation import VLMPropagation
+#from simulation.VLMpropagation import VLMPropagation
 from stories import get_story
+from csvEditor import set_Framing
 
 
 def main():
 
+    for story_id in range(1, 11):
+        for framing in ["left", "centre", "right"]:
+            print(f"\n\n=== Running simulation for story {story_id} with framing '{framing}' ===\n")
+            run_simulation(story_id, framing, "random", "text")
+
+def run_simulation(story_id, framing, role_selection, input_type):
+    set_Framing(framing, story_id, role_selection, input_type)
     network = CommunicationGraph(
-        num_agents=40,
-        nearest_neighbours=4,
-        rewiring_probability=0.2
-    )
-
+            num_agents=100,
+            nearest_neighbours=4,
+            rewiring_probability=0.2
+        )
+    
     network.summary()
-
+    
     network.assign_initial_message(
         0,
-        #Abbott Baby Formula Plant Halts Production Again : Story
-        #Abbott baby formula plant floods in Michigan, halting production for 'weeks' : Right
-        #Formula production at Abbott's Michigan plant delayed after flooding from severe storms : Left
-        #"Chicago Gun Violence Spikes and Increasingly Finds the Youngest Victims",
-        get_story(1, "left")["headline"],
+        get_story(story_id, framing)["headline"],
         "neutral"
     )
-
+    
     simulation = Propagation(network)
-
+    
     simulation.run()
-
 
 if __name__ == "__main__":
     main()

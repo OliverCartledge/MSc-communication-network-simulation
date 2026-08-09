@@ -120,7 +120,10 @@ class Propagation:
         print(f"Final message: {self.final_message}")
         print(f"Semantic similarity score between recieved and altered message: {semantic_similarity(self.original_message, self.final_message)}")
 
-        plt.show()
+
+        plt.show(block = False)
+        plt.pause(5)
+        plt.close()
 
 
     #done in an instant. may be good for debugging later? 

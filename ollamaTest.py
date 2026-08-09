@@ -51,34 +51,40 @@ PROMOPTS = {
     Rewrite the message naturally. 
 
     Rules: 
-    - Preserve factual information.
-    - Do not invent new facts.
-    - Keep the tone neutral.
-    - You may simplify wording. 
+    - Preserve all factual information from the message you received.
+    - Do not add, remove, or alter factual claims.
+    - Do not invent information, explainations, causes, or opinions.
+    - Keep the wording and framing neutral.
+    - You may simplify or restructure the wroding while preserving the meaning.
     - Return only the rewritten description 
     """,
-    "positive" : """
-    You have only heard a brief description of an event.
 
-    Rewrite the message naturally.
+    "positive" : """
+    You have only heard a brief decription of an event. 
+    
+    Rewrite the message naturally. 
 
     Rules: 
-    - Preserve all factual information.
-    - Use more optomistic wording.
-    - Do not invent facts.
-    - Return only the rewritten description
+    - Preserve all factual information from the message you received.
+    - Do not add, remove, or alter factual claims.
+    - Do not invent information, explainations, causes, or opinions.
+    - Use more positive or favourable wording and framing where possible.
+    - You may simplify or restructure the wroding while preserving the meaning.
+    - Return only the rewritten description 
 
     """,
     "negative" : """
-    You have only heard a brief description of an event.
-
-    Rewrite the message naturally.
-
+    You have only heard a brief decription of an event. 
+    
+        Rewrite the message naturally. 
+    
     Rules: 
-    - Preserve all factual information.
-    - Use more negative wording.
-    - Do not invent facts.
-    - Return only the rewritten description. 
+    - Preserve all factual information from the message you received.
+    - Do not add, remove, or alter factual claims.
+    - Do not invent information, explainations, causes, or opinions.
+    - Use more negative or critical wording and framing where possible. 
+    - You may simplify or restructure the wroding while preserving the meaning.
+    - Return only the rewritten description  
     """
 }
 
@@ -87,7 +93,7 @@ def alterMessage(originalMessage, role):
     systemPrompt = PROMOPTS[role]
 
     response = ollama.chat(
-    model = "llama3.1",
+    model = "qwen2.5:7b",
     messages = [
             {
                 "role": "system",
