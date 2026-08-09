@@ -1,6 +1,7 @@
 from simulation.graph import CommunicationGraph
 from simulation.propagation import Propagation
 from simulation.VLMpropagation import VLMPropagation
+from stories import get_story
 
 
 def main():
@@ -18,7 +19,8 @@ def main():
         #Abbott Baby Formula Plant Halts Production Again : Story
         #Abbott baby formula plant floods in Michigan, halting production for 'weeks' : Right
         #Formula production at Abbott's Michigan plant delayed after flooding from severe storms : Left
-        "Chicago Gun Violence Spikes and Increasingly Finds the Youngest Victims",
+        #"Chicago Gun Violence Spikes and Increasingly Finds the Youngest Victims",
+        get_story(1, "left")["headline"],
         "neutral"
     )
 
