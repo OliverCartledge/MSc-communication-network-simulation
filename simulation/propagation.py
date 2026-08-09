@@ -78,6 +78,7 @@ class Propagation:
                         neighbour,
                         current,
                         neighbour_agent.role,
+                        self.original_message,
                         neighbour_agent.message,
                         semantic_similarity(current_agent.message, neighbour_agent.message),
                         semantic_similarity(self.original_message, neighbour_agent.message),

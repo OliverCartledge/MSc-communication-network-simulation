@@ -6,7 +6,7 @@ from simulation.VLMpropagation import VLMPropagation
 def main():
 
     network = CommunicationGraph(
-        num_agents=100,
+        num_agents=40,
         nearest_neighbours=4,
         rewiring_probability=0.2
     )
@@ -18,9 +18,7 @@ def main():
         #Abbott Baby Formula Plant Halts Production Again : Story
         #Abbott baby formula plant floods in Michigan, halting production for 'weeks' : Right
         #Formula production at Abbott's Michigan plant delayed after flooding from severe storms : Left
-        """
-        Abbott Nutrition again pauses baby formula production in Sturgis
-        """,
+        "Chicago Gun Violence Spikes and Increasingly Finds the Youngest Victims",
         "neutral"
     )
 
