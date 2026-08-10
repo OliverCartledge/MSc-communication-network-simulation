@@ -1,6 +1,6 @@
 from simulation.graph import CommunicationGraph
-from simulation.propagation import Propagation
-#from simulation.VLMpropagation import VLMPropagation
+#from simulation.propagation import Propagation
+from simulation.VLMpropagation import VLMPropagation
 from stories import get_story
 from csvEditor import set_Framing
 
@@ -28,7 +28,7 @@ def run_simulation(story_id, framing, role_selection, input_type):
         "neutral"
     )
     
-    simulation = Propagation(network)
+    simulation = VLMPropagation(network)
     
     simulation.run()
 

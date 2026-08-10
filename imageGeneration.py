@@ -45,7 +45,6 @@ def createImageTest(actor, message):
             width=1024,
             height=1024,
             num_inference_steps=20,
-            guidance_scale=4.0,
             generator=torch.Generator(device=device).manual_seed(42),
         ).images[0]
         image.save(f"generateTesting{actor}.png")
