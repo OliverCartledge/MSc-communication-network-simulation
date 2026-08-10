@@ -71,7 +71,7 @@ def set_Framing(framing, story_id, role_selection, input_type):
     _current_visual_simulation_number = None
 
 def addToCSV(current_agent_id, transferred_from_agent_id, role, original_message, message, similarity_to_previous, global_similarity_to_original, sentiment_analysis, depth, file_path=CSV_PATH):
-    global _current_simulation_number
+    global _current_simulation_number, _current_role_selection, _current_Framing, _current_story_id
 
     file_path = Path(file_path)
 
@@ -88,7 +88,7 @@ def addToCSV(current_agent_id, transferred_from_agent_id, role, original_message
         "Initial Framing": _current_Framing,
         "Input type": "headline",
         "Mode": "text",
-        "Role selection": "random",
+        "Role selection": _current_role_selection,
         "Current Agent ID": current_agent_id,
         "Transferred From Agent ID": transferred_from_agent_id,
         "Role": role,

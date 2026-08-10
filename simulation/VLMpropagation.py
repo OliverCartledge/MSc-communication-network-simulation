@@ -30,9 +30,6 @@ class VLMPropagation:
 
             print(f"\nMy message is: {current_agent.message}")
 
-            #testing image generation with the working current version 
-            #createImageTest(current, current_agent.message)
-
             if current == 0:
                 print(f"Start agent is {current}")
                 createImageTest(current, current_agent.message)
@@ -76,37 +73,6 @@ class VLMPropagation:
         print("\nPropagation complete")
 
         plt.show()
-
-
-    #done in an instant. may be good for debugging later? 
-    def propagate(self):
-        queue = deque()
-
-        queue.append(0)
-
-        while queue:
-            current = queue.popleft()
-
-            current_agent = self.network.agents[current]
-
-            print(f"\nAgent {current} is communicating...")
-
-            for neighbour in self.network.graph.neighbors(current):
-                neighbour_agent = self.network.agents[neighbour]
-
-                if not neighbour_agent.has_received:
-
-                    neighbour_agent.receive_message(
-                        current_agent.message
-                    )
-
-                    print(
-                        f"Agent {current} "
-                        f"-> "
-                        f"Agent {neighbour}"
-                    )
-
-                    queue.append(neighbour)
 
 
 # old 

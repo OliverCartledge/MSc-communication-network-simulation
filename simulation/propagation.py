@@ -8,6 +8,7 @@ from csvEditor import addToCSV, createCSV
 #breadth first search
 class Propagation:
     def __init__(self, network):
+        #init - set all starting values to 0 and start the network with agent[0]
         self.network = network
 
         self.frontier = deque([0])
@@ -35,45 +36,46 @@ class Propagation:
 
             current_agent = self.network.agents[current]
 
-            # Summary header for this sender and its recipients
+            #print the current sending agent and their roll 
             print(f"\n=== Agent {current} ({current_agent.role}) sending ===")
 
-            # List recipients once to avoid repeated prints
+            #print a list of agents reciving the message from current
             recipients = list(self.network.graph.neighbors(current))
             if recipients:
                 print(f"Recipients: {', '.join(str(r) for r in recipients)}")
             else:
                 print("Recipients: (none)")
 
-            # Show the sender's message once
+            #show the senders message
             print(f"Message:\n{current_agent.message}")
-
-            #testing image generation with the working current version 
-            #createImageTest(current, current_agent.message)
-            #describeImage(current, current_agent.role)
 
             for neighbour in recipients:
                 neighbour_agent = self.network.agents[neighbour]
 
+                #make sure the agent being passed to has not already received a message
                 if not neighbour_agent.has_received:
+                    #pass the current agents message to the neighbour, alter, and save the altered message 
                     neighbour_agent.receive_message(
                         alterMessage(current_agent.message, current_agent.role)
                     )
 
-                    # Clear, labeled block for each recipient's altered response
+                    #prints to make the output readable
                     print(f"\n--- To Agent {neighbour} ({neighbour_agent.role}) ---")
 
-                    # show the senders Original message to ensure its working 
+                    #show the original message, received message, and altered message for each run
                     print(f"Original Message:{self.original_message}")
                     print(f"Recieved Message:\n{current_agent.message}")
                     print(f"Altered response:\n{neighbour_agent.message}")
 
+                    #print the semantic similarity and sentiement anaylsis score for each message as its recorded
                     print(f"Semantic similarity score between recieved and altered message: {semantic_similarity(current_agent.message, neighbour_agent.message)}")
                     print(f"Sentiment anaylsis of altered message: {sentiment_analysis(neighbour_agent.message)}")
 
+                    #increase the depth for saving / analysis
                     self.depth[neighbour] = self.depth[current] + 1
                     print (f"Propagation depth: {self.depth[neighbour]}")
 
+                    #add the info to the CSV for every step of the simulation for analysis.
                     addToCSV(
                         neighbour,
                         current,
@@ -103,6 +105,7 @@ class Propagation:
 
         plt.figure(figsize=(8,8))
 
+        #reset the step count to 0 for when the simulation is ran more than once without restarting
         step = 0
 
         self.network.display()
@@ -116,53 +119,12 @@ class Propagation:
 
         print("\nPropagation complete")
 
+        #print original, final, and semantic score at the end of each run
         print(f"Original message: {self.original_message}")
         print(f"Final message: {self.final_message}")
         print(f"Semantic similarity score between recieved and altered message: {semantic_similarity(self.original_message, self.final_message)}")
 
-
+        #show the network at the end of the run for a few seconds before closing 
         plt.show(block = False)
         plt.pause(5)
         plt.close()
-
-
-    #done in an instant. may be good for debugging later? 
-    def propagate(self):
-        createCSV()
-
-        queue = deque()
-
-        queue.append(0)
-
-        while queue:
-            current = queue.popleft()
-
-            current_agent = self.network.agents[current]
-
-            # Summary header for this sender and its recipients
-            print(f"\n=== Agent {current} ({current_agent.role}) sending ===")
-
-            # List recipients once to avoid repeated prints
-            recipients = list(self.network.graph.neighbors(current))
-            if recipients:
-                print(f"Recipients: {', '.join(str(r) for r in recipients)}")
-            else:
-                print("Recipients: (none)")
-
-            # Show the sender's message once
-            print(f"Message:\n{current_agent.message}")
-
-            for neighbour in recipients:
-                neighbour_agent = self.network.agents[neighbour]
-
-                if not neighbour_agent.has_received:
-
-                    neighbour_agent.receive_message(
-                        current_agent.message
-                    )
-
-                    # Clear, labeled block for each recipient's received/altered message
-                    print(f"\n--- To Agent {neighbour} ({neighbour_agent.role}) ---")
-                    print(f"Received message:\n{neighbour_agent.message}")
-
-                    queue.append(neighbour)

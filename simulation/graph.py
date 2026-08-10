@@ -25,10 +25,12 @@ class CommunicationGraph:
 
         self.create_agents()
 
+    #create as many agents as the graph has nodes 
     def create_agents(self):
         for node in self.graph.nodes:
             self.agents[node] = Agent(node)
 
+    #this is only used for agent 0 to start the simulation 
     def assign_initial_message(self, agent_id, message, role):
         self.agents[agent_id].receive_message(message)
         self.agents[agent_id].assign_role(role)
