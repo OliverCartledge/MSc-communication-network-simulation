@@ -41,7 +41,7 @@ class VLMPropagation:
                 neighbour_agent = self.network.agents[neighbour]
 
                 if not neighbour_agent.has_received:
-                    neighbour_agent.recieve_image(
+                    neighbour_agent.receive_image(
                         describeImage(current, current_agent.role)
                     )
                     print(f"Neighbours altered message image saved from this description: \n{neighbour_agent.message}")
