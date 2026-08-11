@@ -2,7 +2,7 @@ from diffusers import DiffusionPipeline
 import torch
 
 MODEL_NAME = "Qwen/Qwen-Image"
-
+#MODEL_NAME = "stabilityai/sdxl-turbo"
 device = "cuda" if torch.cuda.is_available() else "cpu"
 dtype = torch.bfloat16 if device == "cuda" else torch.float32
 

@@ -55,7 +55,7 @@ PROMOPTS = {
     - Do not add, remove, or alter factual claims.
     - Do not invent information, explainations, causes, or opinions.
     - Keep the wording and framing neutral.
-    - You may simplify or restructure the wroding while preserving the meaning.
+    - You may simplify or restructure the wording while preserving the meaning.
     - Return only the rewritten description 
     """,
 
@@ -69,7 +69,7 @@ PROMOPTS = {
     - Do not add, remove, or alter factual claims.
     - Do not invent information, explainations, causes, or opinions.
     - Use more positive or favourable wording and framing where possible.
-    - You may simplify or restructure the wroding while preserving the meaning.
+    - You may simplify or restructure the wording while preserving the meaning.
     - Return only the rewritten description 
 
     """,
@@ -83,7 +83,7 @@ PROMOPTS = {
     - Do not add, remove, or alter factual claims.
     - Do not invent information, explainations, causes, or opinions.
     - Use more negative or critical wording and framing where possible. 
-    - You may simplify or restructure the wroding while preserving the meaning.
+    - You may simplify or restructure the wording while preserving the meaning.
     - Return only the rewritten description  
     """
 }
