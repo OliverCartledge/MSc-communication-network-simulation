@@ -3,8 +3,8 @@ from pathlib import Path
 import pandas as pd
 
 #textual model csv 
-CSV_PATH = Path(__file__).resolve().parent / "csvFolder" / "textualCSV.csv"
-COUNTER_PATH = Path(__file__).resolve().parent / "csvFolder" / "simulation_counter.txt"
+CSV_PATH = Path(__file__).resolve().parent / "csvFolder" / "textualCSVLlama.csv"
+COUNTER_PATH = Path(__file__).resolve().parent / "csvFolder" / "simulation_counterLlama.txt"
 CSV_COLUMNS = [
     "Simulation Number",
     "Story ID",

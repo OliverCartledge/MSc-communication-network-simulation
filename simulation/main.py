@@ -7,7 +7,7 @@ from csvEditor import set_Framing
 
 def main():
 
-    for story_id in range(7, 11):
+    for story_id in range(1, 11):
         for framing in ["left", "centre", "right"]:
             print(f"\n\n=== Running simulation for story {story_id} with framing '{framing}' ===\n")
             run_simulation(story_id, framing, "negative", "text")
