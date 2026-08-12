@@ -2,13 +2,10 @@ import torch
 from pathlib import Path
 from csvEditor import getSimulationNumber
 
-from transformers import (
-    Qwen2_5_VLForConditionalGeneration,
-    AutoProcessor,
-)
+from transformers import Qwen2_5_VLForConditionalGeneration
+from transformers import AutoProcessor
 
 from qwen_vl_utils import process_vision_info
-
 
 MODEL_NAME = "Qwen/Qwen2.5-VL-7B-Instruct"
 
