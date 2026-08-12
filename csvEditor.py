@@ -25,7 +25,6 @@ CSV_COLUMNS = [
 
 _current_simulation_number = None
 
-
 def _read_counter(counter_path):
     if not counter_path.exists():
         return 0
@@ -147,6 +146,10 @@ def createVisualCSV(file_path=VISUAL_CSV_PATH, counter_path=VISUAL_COUNTER_PATH)
     if not file_path.exists() or file_path.stat().st_size == 0:
         pd.DataFrame(columns=VISUAL_CSV_COLUMNS).to_csv(file_path, index=False)
 
+    return _current_visual_simulation_number
+
+def getSimulationNumber():
+    global _current_visual_simulation_number
     return _current_visual_simulation_number
 
 def addToVisualCSV(current_agent_id, transferred_from_agent_id, role, original_message, recieved_message, generated_image_path, generated_image_description, similarity_to_previous, global_similarity_to_original, sentiment_analysis, depth, file_path=VISUAL_CSV_PATH):

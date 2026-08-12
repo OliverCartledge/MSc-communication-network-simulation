@@ -1,4 +1,6 @@
 import torch
+from pathlib import Path
+from csvEditor import getSimulationNumber
 
 from transformers import (
     Qwen2_5_VLForConditionalGeneration,
@@ -76,8 +78,10 @@ Return a single paragraph description of the scene.
 def describeImage(actor, role):
 
     systemPrompt = PROMOPTS[role]
-
-    image_path = f"./generateTesting{actor}.png"
+    
+    outputFolder = Path("simulationNumber", str(getSimulationNumber()))
+    
+    image_path = outputFolder / f"generateTesting{actor}.png"
 
     messages = [
         {
@@ -85,7 +89,7 @@ def describeImage(actor, role):
             "content": [
                 {
                     "type": "image",
-                    "image": image_path,
+                    "image": str(image_path),
                 },
                 {
                     "type": "text",

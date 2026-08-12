@@ -1,5 +1,7 @@
 from diffusers import DiffusionPipeline
 import torch
+from pathlib import Path
+from csvEditor import getSimulationNumber
 
 MODEL_NAME = "Qwen/Qwen-Image"
 #MODEL_NAME = "stabilityai/sdxl-turbo"
@@ -26,7 +28,12 @@ except Exception:
 def createImageTest(actor, message):
     print(f"testing generation saving by actor for actor {actor}")
 
+    outputFolder = Path("simulationNumber", str(getSimulationNumber()))
+    outputFolder.mkdir(parents=True, exist_ok=True)
+    
     prompt = message
+
+    print("\n\nTesting simulation number:", )
 
     #generator = torch.Generator(device = device).manual_seed(42)
 #
@@ -47,7 +54,7 @@ def createImageTest(actor, message):
             num_inference_steps=20,
             generator=torch.Generator(device=device).manual_seed(42),
         ).images[0]
-        image.save(f"generateTesting{actor}.png")
+        image.save(outputFolder / f"generateTesting{actor}.png")
 
 
 
