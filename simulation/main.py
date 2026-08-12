@@ -1,16 +1,16 @@
 from simulation.graph import CommunicationGraph
-from simulation.propagation import Propagation
-#from simulation.VLMpropagation import VLMPropagation
+#from simulation.propagation import Propagation
+from simulation.VLMpropagation import VLMPropagation
 from stories import get_story
 from csvEditor import set_Framing
 
 
 def main():
 
-    for story_id in range(1, 11):
+    for story_id in range(4, 11):
         for framing in ["left", "centre", "right"]:
             print(f"\n\n=== Running simulation for story {story_id} with framing '{framing}' ===\n")
-            run_simulation(story_id, framing, "neutral", "image")
+            run_simulation(story_id, framing, "positive", "image")
 
 def run_simulation(story_id, framing, role_selection, input_type):
     #share framing data to csv writer 
@@ -31,7 +31,7 @@ def run_simulation(story_id, framing, role_selection, input_type):
         "neutral"
     )
     
-    simulation = Propagation(network)
+    simulation = VLMPropagation(network)
     
     simulation.run()
 

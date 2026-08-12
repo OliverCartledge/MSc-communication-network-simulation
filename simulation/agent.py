@@ -14,7 +14,7 @@ class Agent:
         self.similarity = 1.0
 
         #if the roles are randomized
-        self.role = "neutral"
+        self.role = "positive"
         #self.role = random.choice(ACTOR_TYPES)
         
         #checks to make sure info isnt repassed to the same node
