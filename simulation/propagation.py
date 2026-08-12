@@ -1,5 +1,5 @@
 from collections import deque
-from ollamaTest import alterMessage
+from textualAlteration import alterMessage
 
 from textSimilarity import semantic_similarity, sentiment_analysis
 from csvEditor import addToCSV, createCSV
