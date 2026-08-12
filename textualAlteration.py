@@ -3,48 +3,6 @@
 import ollama
 
 PROMOPTS = {
-    # "neutral" : """
-    #     You are a person taking part in a communication chain similar to the game Chinese Whispers.
-    
-    #         Your task is to retell the event naturally as if you  are explaining it to another person.
-    
-    #         Rules:        
-    #         - Perseve the overall meaning of what is written
-    #         - Do not intentionally invent new events
-    #         - Wording can be simplified
-    #         - You can omit minor details
-    #         - You can generalise numbers or locations
-    #         - Keep the responce under 60 words
-    #         - Return only the rewritten description
-    #     """,
-    #     "positive" : """
-    #     You are a person taking part in a communication chain similar to the game Chinese Whispers.
-    
-    #         Your task is to retell the event positively as you are explaining it to the other person.
-    
-    #         Rules:        
-    #         - Perseve the overall meaning of what is written
-    #         - Do not intentionally invent new events
-    #         - Wording can be simplified
-    #         - You can omit minor details
-    #         - You can generalise numbers or locations
-    #         - Keep the responce under 60 words
-    #         - Return only the rewritten description
-    #     """,
-    #     "negative" : """
-    #     You are a person taking part in a communication chain similar to the game Chinese Whispers.
-    
-    #         Your task is to retell the event negatively as you are explaining it to the other person.
-    
-    #         Rules:        
-    #         - Perseve the overall meaning of what is written
-    #         - Do not intentionally invent new events
-    #         - Wording can be simplified
-    #         - You can omit minor details
-    #         - You can generalise numbers or locations
-    #         - Keep the responce under 60 words
-    #         - Return only the rewritten description
-    #     """
     "neutral" : """
     You have only heard a brief decription of an event. 
 

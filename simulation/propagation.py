@@ -10,15 +10,10 @@ class Propagation:
     def __init__(self, network):
         #init - set all starting values to 0 and start the network with agent[0]
         self.network = network
-
         self.frontier = deque([0])
-
         self.original_message =network.agents[0].message
-
         self.final_message = None
-
         self.finished = False
-
         self.depth = {0: 0}
 
 
