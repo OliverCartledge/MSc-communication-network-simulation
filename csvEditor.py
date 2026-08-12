@@ -153,7 +153,7 @@ def getSimulationNumber():
     return _current_visual_simulation_number
 
 def addToVisualCSV(current_agent_id, transferred_from_agent_id, role, original_message, recieved_message, generated_image_path, generated_image_description, similarity_to_previous, global_similarity_to_original, sentiment_analysis, depth, file_path=VISUAL_CSV_PATH):
-    global _current_visual_simulation_number
+    global _current_visual_simulation_number, _current_role_selection, _current_Framing, _current_story_id
 
     file_path = Path(file_path)
 
@@ -169,7 +169,7 @@ def addToVisualCSV(current_agent_id, transferred_from_agent_id, role, original_m
         "Initial Framing": _current_Framing,
         "Input type": "headline",
         "Mode": "image",
-        "Role selection": "random",
+        "Role selection": _current_role_selection,
         "Current Agent ID": current_agent_id,
         "Transferred From Agent ID": transferred_from_agent_id,
         "Role": role,

@@ -10,7 +10,7 @@ def main():
     for story_id in range(1, 11):
         for framing in ["left", "centre", "right"]:
             print(f"\n\n=== Running simulation for story {story_id} with framing '{framing}' ===\n")
-            run_simulation(story_id, framing, "random", "image")
+            run_simulation(story_id, framing, "neutral", "image")
 
 def run_simulation(story_id, framing, role_selection, input_type):
     #share framing data to csv writer 
