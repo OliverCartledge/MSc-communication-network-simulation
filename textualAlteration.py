@@ -3,8 +3,9 @@
 import ollama
 
 PROMOPTS = {
+    #You have only heard a brief decription of an event. 
     "neutral" : """
-    You have only heard a brief decription of an event. 
+    You have received a news article of an event.
 
     Rewrite the message naturally. 
 
@@ -16,9 +17,9 @@ PROMOPTS = {
     - You may simplify or restructure the wording while preserving the meaning.
     - Return only the rewritten description 
     """,
-
+    #You have only heard a brief decription of an event. 
     "positive" : """
-    You have only heard a brief decription of an event. 
+    You have received a news article of an event.
     
     Rewrite the message naturally. 
 
@@ -31,8 +32,9 @@ PROMOPTS = {
     - Return only the rewritten description 
 
     """,
+    #You have only heard a brief decription of an event. 
     "negative" : """
-    You have only heard a brief decription of an event. 
+    You have received a news article of an event.
     
         Rewrite the message naturally. 
     

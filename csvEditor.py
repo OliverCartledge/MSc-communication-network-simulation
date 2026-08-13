@@ -3,8 +3,8 @@ from pathlib import Path
 import pandas as pd
 
 #textual model csv 
-CSV_PATH = Path(__file__).resolve().parent / "csvFolder" / "textualCSVLlama.csv"
-COUNTER_PATH = Path(__file__).resolve().parent / "csvFolder" / "simulation_counterLlama.txt"
+CSV_PATH = Path(__file__).resolve().parent / "csvFolder" / "article_textualCSV.csv"
+COUNTER_PATH = Path(__file__).resolve().parent / "csvFolder" / "article_simulaton_counter.txt"
 CSV_COLUMNS = [
     "Simulation Number",
     "Story ID",
@@ -85,7 +85,7 @@ def addToCSV(current_agent_id, transferred_from_agent_id, role, original_message
         "Simulation Number": _current_simulation_number,
         "Story ID": _current_story_id,
         "Initial Framing": _current_Framing,
-        "Input type": "headline",
+        "Input type": "article",
         "Mode": "text",
         "Role selection": _current_role_selection,
         "Current Agent ID": current_agent_id,
