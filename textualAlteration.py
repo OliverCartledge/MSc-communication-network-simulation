@@ -52,6 +52,7 @@ def alterMessage(originalMessage, role):
     message = originalMessage
     systemPrompt = PROMOPTS[role]
 
+    #qwen model: qwen2.5:7b
     response = ollama.chat(
     model = "llama3.1",
     messages = [

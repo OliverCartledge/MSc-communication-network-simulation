@@ -105,8 +105,8 @@ def addToCSV(current_agent_id, transferred_from_agent_id, role, original_message
 #===========================================================================================================================================
 
 #image model csv
-VISUAL_CSV_PATH = Path(__file__).resolve().parent / "csvFolder" / "visualCSV.csv"
-VISUAL_COUNTER_PATH = Path(__file__).resolve().parent / "csvFolder" / "visual_simulation_counter.txt"
+VISUAL_CSV_PATH = Path(__file__).resolve().parent / "csvFolder" / "artical_visualCSV.csv"
+VISUAL_COUNTER_PATH = Path(__file__).resolve().parent / "csvFolder" / "article_visual_simulation_counter.txt"
 
 VISUAL_CSV_COLUMNS = [
     "Simulation Number",
@@ -167,7 +167,7 @@ def addToVisualCSV(current_agent_id, transferred_from_agent_id, role, original_m
         "Simulation Number": _current_visual_simulation_number,
         "Story ID": _current_story_id,
         "Initial Framing": _current_Framing,
-        "Input type": "headline",
+        "Input type": "article",
         "Mode": "image",
         "Role selection": _current_role_selection,
         "Current Agent ID": current_agent_id,
