@@ -10,22 +10,26 @@ from csvEditor import addToVisualCSV, createVisualCSV
 class VLMPropagation:
     def __init__(self, network):
         self.network = network
-        self.frontier = deque([0])
+
+        self.propLayer = deque([0])
+
         self.original_message =network.agents[0].message
+
         self.finished = False
+
         self.depth = {0: 0}
 
     def step(self):
 
-        if not self.frontier:
+        if not self.propLayer:
 
             self.finished = True
             return False
-        next_frontier = deque()
+        next_propLayer = deque()
 
-        while self.frontier:
+        while self.propLayer:
 
-            current = self.frontier.popleft()
+            current = self.propLayer.popleft()
 
             current_agent = self.network.agents[current]
 
@@ -51,7 +55,7 @@ class VLMPropagation:
 
                     print(f"\n--- To Agent {neighbour} ({neighbour_agent.role}) ---")
 
-                    next_frontier.append(neighbour)
+                    next_propLayer.append(neighbour)
 
                     #print the semantic similarity and sentiement anaylsis score for each message as its recorded
                     print(f"Semantic similarity score between recieved and altered message: {semantic_similarity(current_agent.message, neighbour_agent.message)}")
@@ -76,7 +80,7 @@ class VLMPropagation:
                         self.depth[neighbour]
                     )
 
-        self.frontier = next_frontier
+        self.propLayer = next_propLayer
 
         return True
     

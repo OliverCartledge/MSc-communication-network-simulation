@@ -8,8 +8,6 @@ MODEL_NAME = "Qwen/Qwen-Image"
 device = "cuda" if torch.cuda.is_available() else "cpu"
 dtype = torch.bfloat16 if device == "cuda" else torch.float32
 
-print(f"Using: {device}")
-
 pipe = DiffusionPipeline.from_pretrained(
     MODEL_NAME,
     torch_dtype=dtype,

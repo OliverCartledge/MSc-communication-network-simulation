@@ -10,24 +10,29 @@ class Propagation:
     def __init__(self, network):
         #init - set all starting values to 0 and start the network with agent[0]
         self.network = network
-        self.frontier = deque([0])
+
+        self.propLayer = deque([0])
+
         self.original_message =network.agents[0].message
+
         self.final_message = None
+
         self.finished = False
+
         self.depth = {0: 0}
 
 
     def step(self):
 
-        if not self.frontier:
+        if not self.propLayer:
 
             self.finished = True
             return False
-        next_frontier = deque()
+        next_propLayer = deque()
 
-        while self.frontier:
+        while self.propLayer:
 
-            current = self.frontier.popleft()
+            current = self.propLayer.popleft()
 
             current_agent = self.network.agents[current]
 
@@ -86,9 +91,9 @@ class Propagation:
                     self.final_message = neighbour_agent.message
 
                     
-                    next_frontier.append(neighbour)
+                    next_propLayer.append(neighbour)
 
-        self.frontier = next_frontier
+        self.propLayer = next_propLayer
 
         return True
     
